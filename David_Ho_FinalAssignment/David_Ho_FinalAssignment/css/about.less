@@ -1,0 +1,486 @@
+@font-face {
+    font-family: ubuntu;
+    src: url(../fonts/Ubuntu.ttf);
+}
+
+@font-face {
+    font-family: ubuntureg;
+    src: url(../fonts/Ubuntu-R.ttf);
+}
+
+// GRID VARIABLES & MIXINS
+//------------------------------------
+// http://gridcalculator.dk - grid calculator
+
+// Change this values to change the size of the grid
+// 1170px grid width
+@column-width: 65;
+@gutter-width: 30;
+@columns: 12;
+
+// Utility variable — you should never need to modify this
+@gridsystem-width: (@column-width * @columns) + (@gutter-width * @columns) * 1px;
+
+// Set @total-width to 100% for a fluid layout
+// @total-width: @gridsystem-width; <---commented!!!
+@total-width: 100%; // uncommented. -------makes column mixin turn into percentages
+
+
+
+// Grid mixin
+.column(@x,@columns:@columns) {
+	display: inline;
+	float: left;
+	width: @total-width*((((@gutter-width+@column-width)*@x)-@gutter-width) / @gridsystem-width);
+	margin: 0 @total-width*((@gutter-width*.5)/@gridsystem-width);
+}
+
+
+// GLOBAL STYLES
+//----------------------------------------------------------
+
+// Fixes Box Model sizing issues
+// http://www.paulirish.com/2012/box-sizing-border-box-ftw/
+html {
+  box-sizing: border-box;
+}
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+img {
+	width: 100%; // makes all images 100% of it's container
+}
+
+//Use this to force clear floated child elements
+.clearfix:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+
+
+.container {
+	max-width: @gridsystem-width;
+	margin: 0 auto;
+}
+
+nav .fa-bars {
+	display: none;
+}
+
+// HEADER LOGO NAV
+// ---------------------------------------
+
+header {
+	background-color: #fff;
+	height: 90px;
+}
+
+.logo {
+	.column(5);
+	margin-top: 35px;
+
+	img {
+		width: 79px;
+	}
+}
+nav {
+	.column(7);
+	margin-top: 35px;
+
+	ul {
+		text-align: right;
+
+		li {
+			display: inline-block;
+			padding-left: 30px;
+
+			
+			a {
+				text-decoration: none;
+				font-family: ubuntu,"Arial Black","Arial Bold",Gadget,sans-serif;
+				color: #414141;
+				text-transform: uppercase;
+
+				&:hover {
+					border-bottom: 3px solid #00be9c;
+					-webkit-transition: all 400ms;
+ 		    		transition: all 400ms;
+				}
+			}
+
+			.b {
+				border-bottom: 3px solid #00be9c;
+			}
+		}
+	}
+}
+
+// SLIDER
+// ---------------------------------------
+.aboutslider {
+	height: 488px;
+	background: url(../img/about.jpg);
+	background-size: cover;
+	background-position: center;
+	opacity: 0.85;
+
+	.headertext {
+		.column(10);
+		height: 500px;
+		float: left;
+		margin: 0 auto;
+		width: 100%;
+		padding-top: 200px;
+	}
+
+	h1 {
+		font-family: ubuntureg, Arial,"Helvetica Neue",Helvetica,sans-serif;
+		font-size: 60px;
+		clear: both;
+		text-align: center;
+		color: #fff;
+		margin: 0px auto 0;
+
+		.teal{
+			color: #00be9c;
+		}
+	}
+
+	h5 {
+		font-family: ubuntureg, Arial,"Helvetica Neue",Helvetica,sans-serif;
+		font-size: 16px;
+		clear: both;
+		text-align: center;
+		color: #fff;
+		margin: 0 auto;
+		margin-top: 20px;
+		line-height: 28px;
+	}
+}
+
+// MAIN CONTENT
+// ---------------------------------------
+.main-content {
+	height: 400px;
+
+	.upper {
+		.column(12);
+
+		.upline {
+				border-top: 2px solid #00be9c;
+				width: 102px;
+				margin: 0 auto;
+			}
+
+			.downline {
+				border-top: 2px solid #00be9c;
+				width: 170px;
+				margin: 0 auto;
+			}
+
+		h2{
+			color: #484848;
+			font-size: 24px;
+			text-align: center;
+			padding-top: 35px;
+			font-family: ubuntureg, Arial,"Helvetica Neue",Helvetica,sans-serif;
+		}
+
+		p {
+			color: #9d9c9c;
+			font-size: 16px;
+			text-align: center;
+			line-height: 24px;
+			font-family: ubuntureg, Arial,"Helvetica Neue",Helvetica,sans-serif;
+		}
+	}
+}
+
+
+// TEAM CONTENT
+// ---------------------------------------
+.team-content {
+	height: 650px;
+	background-color: #f6f6f6;
+	border-top: 1px solid #e5e5e5;
+	border-bottom: 1px solid #e5e5e5;
+
+	.middle {
+		.column(12);
+
+		.midline {
+				border-top: 2px solid #00be9c;
+				width: 106px;
+				margin: 0 auto;
+			}
+
+		h2 {
+			color: #484848;
+			font-size: 24px;
+			text-align: center;
+			padding-top: 35px;
+			font-family: ubuntureg, Arial,"Helvetica Neue",Helvetica,sans-serif;
+		}
+	}
+
+	.box {
+		.column(3);
+		height: 500px;
+		margin-top: 50px;
+
+		img {
+				border: 1px solid #e0dddd;
+				border-radius: 50%;
+			}
+
+		h3 {
+			color: #484848;
+			font-size: 20px;
+			text-align: center;
+			font-family: ubuntureg, Arial,"Helvetica Neue",Helvetica,sans-serif;
+			margin: 0 auto;
+			padding-top: 20px
+		}
+
+		h6 {
+			color: #9d9c9c;
+			font-size: 16px;
+			text-align: center;
+			font-family: ubuntureg, Arial,"Helvetica Neue",Helvetica,sans-serif;
+			margin: 0 auto;
+		}
+
+		p {
+			font-family: ubuntureg, Arial,"Helvetica Neue",Helvetica,sans-serif;
+			color: #9d9c9c;
+			font-size: 12px;
+			text-align: left;
+			line-height: 18px;
+			padding-top: 20px;
+		}
+	}
+}
+
+// MISSION CONTENT
+// ---------------------------------------
+.mission-content {
+	height: 400px;
+
+	.bottomleft {
+		.column(6);
+
+		.downline {
+				border-top: 2px solid #00be9c;
+				width: 129px;
+			}
+
+		h2 {
+			color: #484848;
+			font-size: 24px;
+			text-align: left;
+			padding-top: 35px;
+			font-family: ubuntureg, Arial,"Helvetica Neue",Helvetica,sans-serif;
+		}
+
+		p {
+			color: #9d9c9c;
+			font-size: 12px;
+			text-align: left;
+			line-height: 18px;
+			font-family: ubuntureg, Arial,"Helvetica Neue",Helvetica,sans-serif;
+		}
+	}
+
+	.bottomright {
+		.column(6);
+
+		img {
+			margin-top: 35px;
+		}
+	}
+}
+
+// FOOTER
+// ---------------------------------------
+footer {
+	color: #fff;
+	background-color: #00be9c;
+	text-align: center;
+	padding-top: 10px;
+	height: 70px;
+	font-family: ubuntureg, Arial,"Helvetica Neue",Helvetica,sans-serif;
+}
+
+
+
+// MEDIA QUERIES
+// -----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+@media (max-width: 940px) {
+
+	nav {
+
+		.fa-bars {
+			display: block;
+			padding: 0px 15px;
+			color: #00be9c;
+			cursor: pointer;
+			text-align: right;
+		}
+		ul.dropdown {
+			display: none;
+			text-align: left;
+
+			li {
+				display: block;
+				border-top: 1px solid #00be9c;
+			}
+			a {
+				color: #00be9c;
+				padding-left: 15px;
+
+				&:hover {
+					color: #444;
+				}
+			}
+			&.open {
+				display: block;
+			}
+		}
+	}
+
+
+	.team-content {
+		height: 600px;
+
+		.box {
+			margin-top: 50px;
+			height: 300px;
+
+		}
+	}
+
+	.mission-content {
+		height: 420px;
+
+		.bottomright {
+
+			img {
+				margin-top: 80px;
+			}
+		}
+	}
+}
+
+
+@media (max-width: 680px) {
+
+	.main-content {
+		height: 500px;
+
+		.upper {
+			p {
+				text-align: left;
+			}
+		}
+	}
+	.team-content {
+		height: 1200px;
+
+		.box {
+			.column(6);
+			margin-top: 50px;
+			height: 500px;
+
+		}
+	}
+
+		.mission-content {
+		height: 650px;
+
+		.bottomleft {
+			.column(12);
+		}
+
+		.bottomright {
+			.column(12);
+
+			img {
+				margin-top: 35px;
+			}
+		}
+	}
+}
+
+@media (max-width: 520px) {
+
+
+	.team-content {
+		height: 1100px;
+
+		.box {
+			margin-top: 50px;
+			height: 400px;
+
+		}
+	}
+
+}
+
+@media (max-width: 480px) {
+
+	.main-content {
+		height: 600px;
+	}
+
+	.aboutslider {
+		height: 600px;
+	}
+
+	.team-content {
+		height: 2650px;
+
+		.box {
+			.column(12);
+			margin-top: 50px;
+			height: 580px;
+
+			p {
+				text-align: center;
+			}
+		}
+	}
+}
+
+@media (max-width: 375px) {
+
+	.main-content {
+		height: 650px;
+	}
+
+	.team-content {
+		height: 2250px;
+
+		.box {
+			.column(12);
+			margin-top: 50px;
+			height: 480px;
+
+		}
+	}
+
+}
+
+
+
+
+
+
+
+
+
+
